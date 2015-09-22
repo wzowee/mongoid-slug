@@ -818,6 +818,17 @@ module Mongoid
         page = PageSlugLocalized.create(title_translations: { 'en' => 'Title on English2', 'nl' => 'Title on English2' })
         expect(page['_slugs']).to eq('en' => ['title-on-english2'], 'nl' => ['title-on-english2'])
       end
+      
+      it 'exact same title multiple langauges when setting one at a time' do
+        page = PageSlugLocalized.create!(title:"Title on English") 
+        expect(page['_slugs']).to eq('en' => ['title-on-english'])      
+  
+        I18n.with_locale("nl") do
+          page.update_attributes(title:"Title on English")
+        end
+        
+        expect(page['_slugs']).to eq('en' => ['title-on-english'], 'nl' => ['title-on-english'])
+      end
 
       it 'does not produce duplicate slugs' do
         old_locale = I18n.locale
