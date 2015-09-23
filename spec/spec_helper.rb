@@ -9,7 +9,6 @@ require 'mongoid'
 require 'mongoid/paranoia'
 require 'rspec/its'
 require 'mongoid-compatibility'
-require "i18n/backend/fallbacks"
 
 require File.expand_path '../../lib/mongoid/slug', __FILE__
 
@@ -36,12 +35,6 @@ end
 end
 
 I18n.available_locales = [:en, :nl]
-
-# See - for further fallback configuration as below http://docs.mongodb.org/ecosystem/tutorial/ruby-mongoid-tutorial/
-# I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
-# I18n.default_locale = :en
-# I18n.fallbacks = true
-# ::I18n.fallbacks[:nl] = [:en]
 
 RSpec.configure do |c|
   c.raise_errors_for_deprecations!
