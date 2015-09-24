@@ -1,6 +1,6 @@
 # encoding: utf-8
 require 'spec_helper'
-require "i18n/backend/fallbacks.rb"
+require "i18n/backend/fallbacks"
 
 module Mongoid
   describe 'I18n::Fallback with Mongoid::Slug' do
@@ -10,7 +10,7 @@ module Mongoid
       Book.create(title: 'A Thousand Plateaus')
     end
 
-    context 'slug can be localized' do
+    context 'slug can be localized with fallbacks' do
       before(:each) do
         @old_locale = I18n.locale
       end
